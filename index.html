@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeriPak QC Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <!-- SECTION 1: Top Header Bar -->
+    <header class="top-header">
+        <div class="header-left">
+            <div class="logo-wrapper">
+                <img src="CODE/LOGO/AQS Logo 3.svg" alt="AQS Logo" class="header-logo">
+            </div>
+            <div class="header-divider"></div>
+            <h1 class="page-title">VeriPak QC Dashboard</h1>
+        </div>
+        <div class="header-right">
+            <span class="user-label">User: QC Manager</span>
+            <div class="theme-toggle">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Light / Dark Mode</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 2: Filter Row -->
+    <section class="filter-section">
+        <div class="filter-container-left">
+            <div class="filter-group">
+                <label class="filter-label">Select Line</label>
+                <select class="filter-select" id="lineSelect">
+                    <option value="syrup-5">Syrup Line 5</option>
+                    <option value="syrup-3">Syrup Line 3</option>
+                    <option value="bottling-1">Bottling Line 1</option>
+                    <option value="bottling-2">Bottling Line 2</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label class="filter-label">Date Range</label>
+                <div class="date-input-wrapper">
+                    <input type="text" class="filter-input" id="dateRange" value="04/01/2024 – 04/07/2024" readonly>
+                    <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="filter-container-right">
+            <button class="btn-primary" id="viewUpcBtn">View UPC File</button>
+        </div>
+    </section>
+
+    <!-- SECTION 3: KPI Summary Strip -->
+    <section class="kpi-section">
+        <div class="kpi-card">
+            <div class="kpi-block">
+                <div class="kpi-label">Total Products Ran</div>
+                <div class="kpi-value" id="totalProducts">51,300</div>
+            </div>
+            <div class="kpi-divider"></div>
+            <div class="kpi-block">
+                <div class="kpi-label">Total Quality Rejects</div>
+                <div class="kpi-value kpi-success" id="totalRejects">128</div>
+            </div>
+            <div class="kpi-divider"></div>
+            <div class="kpi-block">
+                <div class="kpi-label">Overall Reject Rate</div>
+                <div class="kpi-value" id="rejectRate">0.25%</div>
+            </div>
+            <div class="kpi-divider"></div>
+            <div class="kpi-block">
+                <div class="kpi-label">Top Reject Category</div>
+                <div class="kpi-value kpi-danger" id="topCategory">Inspection Rejects</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4 & 5: Line Summary Header and Table -->
+    <section class="line-summary-section">
+        <div class="section-header">
+            <h2 class="section-title">Line Summary</h2>
+        </div>
+
+        <div class="summary-table-card">
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th class="col-product">Product & UPC</th>
+                        <th class="col-operators">Operators</th>
+                        <th class="col-rejects">Inspection Rejects</th>
+                        <th class="col-rejects">Weight Rejects</th>
+                        <th class="col-rejects">MD Rejects</th>
+                        <th class="col-actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="summaryTableBody">
+                    <!-- Product Row 1 -->
+                    <tr class="product-row">
+                        <td class="product-cell">
+                            <div class="product-name">Coca-Cola Classic 20oz</div>
+                            <div class="product-upc">UPC: 049000042566</div>
+                        </td>
+                        <td class="operators-cell">
+                            <div class="operator-line">John Smith <span class="operator-hours">24 hrs</span></div>
+                            <div class="operator-line">Maria Garcia <span class="operator-hours">16 hrs</span></div>
+                            <div class="operator-line">David Chen <span class="operator-hours">8 hrs</span></div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">32</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-danger" style="width: 80%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-danger">KPI = 25</div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">18</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-success" style="width: 36%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-success">KPI = 50</div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">12</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-success" style="width: 60%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-success">KPI = 20</div>
+                        </td>
+                        <td class="actions-cell">
+                            <button class="btn-view-csv">View CSV</button>
+                        </td>
+                    </tr>
+
+                    <!-- Product Row 2 -->
+                    <tr class="product-row">
+                        <td class="product-cell">
+                            <div class="product-name">Sprite Zero 20oz</div>
+                            <div class="product-upc">UPC: 049000028894</div>
+                        </td>
+                        <td class="operators-cell">
+                            <div class="operator-line">Sarah Johnson <span class="operator-hours">24 hrs</span></div>
+                            <div class="operator-line">Michael Brown <span class="operator-hours">12 hrs</span></div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">26</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-danger" style="width: 65%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-danger">KPI = 15</div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">28</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-success" style="width: 56%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-success">KPI = 50</div>
+                        </td>
+                        <td class="reject-cell">
+                            <div class="reject-value">12</div>
+                            <div class="reject-gauge">
+                                <div class="gauge-bar">
+                                    <div class="gauge-fill gauge-success" style="width: 60%;">
+                                        <div class="gauge-dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kpi-badge kpi-badge-success">KPI = 20</div>
+                        </td>
+                        <td class="actions-cell">
+                            <button class="btn-view-csv">View CSV</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Combined Reject Charts -->
+    <section class="charts-section">
+        <div class="chart-card">
+            <div class="chart-header">
+                <div class="chart-title">Inspection Rejects</div>
+                <div class="kpi-badge kpi-badge-danger">KPI = 40</div>
+            </div>
+            <div class="chart-value chart-value-danger">58</div>
+            <div class="chart-bars">
+                <div class="bar-chart bar-danger">
+                    <div class="bar" style="height: 40%"></div>
+                    <div class="bar" style="height: 60%"></div>
+                    <div class="bar" style="height: 80%"></div>
+                    <div class="bar" style="height: 100%"></div>
+                    <div class="bar" style="height: 70%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <div class="chart-title">Weight Rejects</div>
+                <div class="kpi-badge kpi-badge-success">KPI = 100</div>
+            </div>
+            <div class="chart-value chart-value-success">46</div>
+            <div class="chart-bars">
+                <div class="bar-chart bar-success">
+                    <div class="bar" style="height: 30%"></div>
+                    <div class="bar" style="height: 50%"></div>
+                    <div class="bar" style="height: 70%"></div>
+                    <div class="bar" style="height: 90%"></div>
+                    <div class="bar" style="height: 60%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <div class="chart-header">
+                <div class="chart-title">MD Rejects</div>
+                <div class="kpi-badge kpi-badge-danger">KPI = 20</div>
+            </div>
+            <div class="chart-value chart-value-danger">24</div>
+            <div class="chart-bars">
+                <div class="bar-chart bar-danger">
+                    <div class="bar" style="height: 35%"></div>
+                    <div class="bar" style="height: 55%"></div>
+                    <div class="bar" style="height: 75%"></div>
+                    <div class="bar" style="height: 85%"></div>
+                    <div class="bar" style="height: 65%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
