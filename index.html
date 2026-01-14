@@ -42,14 +42,16 @@
             </div>
             <div class="filter-group">
                 <label class="filter-label">Date Range</label>
-                <div class="date-input-wrapper">
-                    <input type="text" class="filter-input" id="dateRange" value="04/01/2024 – 04/07/2024" readonly>
-                    <svg class="calendar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
+                <div class="date-range-inputs">
+                    <div class="date-input-wrapper">
+                        <input type="datetime-local" class="filter-input date-input" id="dateStart" value="2024-04-01T00:00">
+                        <span class="date-label">Start</span>
+                    </div>
+                    <span class="date-separator">to</span>
+                    <div class="date-input-wrapper">
+                        <input type="datetime-local" class="filter-input date-input" id="dateEnd" value="2024-04-07T23:59">
+                        <span class="date-label">End</span>
+                    </div>
                 </div>
             </div>
         </div>

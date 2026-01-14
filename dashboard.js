@@ -28,6 +28,18 @@ class VeriPakDashboard {
             this.updateDashboard();
         });
 
+        // Date range inputs
+        const dateStart = document.getElementById('dateStart');
+        const dateEnd = document.getElementById('dateEnd');
+        dateStart.addEventListener('change', (e) => {
+            this.dateRange = this.getDateRangeString();
+            this.updateDashboard();
+        });
+        dateEnd.addEventListener('change', (e) => {
+            this.dateRange = this.getDateRangeString();
+            this.updateDashboard();
+        });
+
         // View UPC File button
         const viewUpcBtn = document.getElementById('viewUpcBtn');
         viewUpcBtn.addEventListener('click', () => {
@@ -159,6 +171,23 @@ class VeriPakDashboard {
 
     formatNumber(num) {
         return num.toLocaleString('en-US');
+    }
+
+    getDateRangeString() {
+        const startInput = document.getElementById('dateStart');
+        const endInput = document.getElementById('dateEnd');
+
+        if (startInput && endInput) {
+            const start = new Date(startInput.value);
+            const end = new Date(endInput.value);
+
+            const formatDate = (date) => {
+                return `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+            };
+
+            return `${formatDate(start)} – ${formatDate(end)}`;
+        }
+        return this.dateRange;
     }
 
     viewUpcFile() {
