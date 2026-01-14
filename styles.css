@@ -366,6 +366,7 @@ input:checked + .toggle-slider:before {
 .summary-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .summary-table thead {
@@ -374,12 +375,20 @@ input:checked + .toggle-slider:before {
 
 .summary-table th {
     padding: 1rem 1.5rem;
-    text-align: left;
+    text-align: center;
     color: white;
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.summary-table th.col-product {
+    text-align: left;
+}
+
+.summary-table th.col-operators {
+    text-align: left;
 }
 
 .col-product {
@@ -411,6 +420,12 @@ input:checked + .toggle-slider:before {
 .summary-table td {
     padding: 1.5rem 1.5rem;
     vertical-align: top;
+    text-align: center;
+}
+
+.summary-table td.product-cell,
+.summary-table td.operators-cell {
+    text-align: left;
 }
 
 .product-cell {
