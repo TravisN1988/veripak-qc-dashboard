@@ -6,7 +6,10 @@
       "Bash(git commit:*)",
       "Bash(git remote add:*)",
       "Bash(git push:*)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "Bash(gh api:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(curl:*)"
     ]
   }
 }

@@ -392,7 +392,7 @@ input:checked + .toggle-slider:before {
 }
 
 .col-product {
-    width: 20%;
+    width: 22%;
 }
 
 .col-operators {
@@ -400,11 +400,11 @@ input:checked + .toggle-slider:before {
 }
 
 .col-rejects {
-    width: 15%;
+    width: 14%;
 }
 
 .col-actions {
-    width: 10%;
+    width: 12%;
     text-align: center;
 }
 
@@ -429,9 +429,16 @@ input:checked + .toggle-slider:before {
 }
 
 .product-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    /* Removed display: flex to prevent table layout issues */
+}
+
+.product-cell .product-name {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.product-cell .product-upc {
+    display: block;
 }
 
 .product-name {
@@ -446,9 +453,16 @@ input:checked + .toggle-slider:before {
 }
 
 .operators-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    /* Removed display: flex to prevent table layout issues */
+}
+
+.operators-cell .operator-line {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.operators-cell .operator-line:last-child {
+    margin-bottom: 0;
 }
 
 .operator-line {
