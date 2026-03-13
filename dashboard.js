@@ -373,6 +373,7 @@ class VeriPakDashboard {
 
     renderAll() {
         this.renderKPIs();
+        this.renderOEE();
         this.renderTable();
         this.renderCharts();
     }
@@ -407,6 +408,51 @@ class VeriPakDashboard {
         rateEl.classList.toggle('kpi-success', parseFloat(rejectRate) <= 0.5);
 
         document.getElementById('topCategory').className = 'kpi-value kpi-danger';
+    }
+
+    // ── OEE ───────────────────────────────────────────────────────────────
+
+    renderOEE() {
+        if (!this.data.length) return;
+
+        const days               = this.data[0]._days;
+        const totalAvailableHours = days * 14;                          // 14 productive hrs/day
+        const totalRunHours      = this.data.reduce((s, p) => s + p._hours, 0);
+
+        // Seeded per line + date so it's stable but varies realistically
+        const lineSeed  = this.currentLine.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+        const dateSeed  = Math.floor(this._startDate.getTime() / 86400000);
+        const seed      = lineSeed * 17 + dateSeed;
+
+        // Availability: run hours vs available, discounted for changeovers & unplanned stops
+        const changeoverFactor = 0.80 + seededRand(seed + 100) * 0.14;  // 80–94%
+        const availability     = Math.min(0.99, (totalRunHours / totalAvailableHours) * changeoverFactor);
+
+        // Performance: speed losses and minor stoppages (75–92%)
+        const performance = 0.75 + seededRand(seed + 200) * 0.17;
+
+        // Quality: derived from actual simulated data
+        const totalUnits   = this.data.reduce((s, p) => s + p.totalUnits, 0);
+        const totalRejects = this.data.reduce((s, p) =>
+            s + p.inspectionRejects.value + p.weightRejects.value + p.mdRejects.value, 0);
+        const quality = totalUnits > 0 ? (totalUnits - totalRejects) / totalUnits : 1;
+
+        const oee = availability * performance * quality;
+
+        // Color thresholds: green ≥65%, amber 45–64%, red <45%
+        const oeeEl  = document.getElementById('oeeIndicator');
+        const valEl  = document.getElementById('oeeValue');
+        const barEl  = document.getElementById('oeeBar');
+        const compEl = document.getElementById('oeeComponents');
+        if (!oeeEl || !valEl || !barEl || !compEl) return;
+
+        const pct   = (oee * 100).toFixed(1);
+        const tier  = oee >= 0.65 ? 'oee-good' : oee >= 0.45 ? 'oee-fair' : 'oee-poor';
+        oeeEl.className = `oee-indicator ${tier}`;
+        valEl.textContent  = `${pct}%`;
+        barEl.style.width  = `${pct}%`;
+        compEl.textContent =
+            `A ${(availability * 100).toFixed(0)}%  ·  P ${(performance * 100).toFixed(0)}%  ·  Q ${(quality * 100).toFixed(1)}%`;
     }
 
     // ── Table ─────────────────────────────────────────────────────────────
