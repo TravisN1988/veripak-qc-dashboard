@@ -15,48 +15,57 @@ const OPERATORS = {
         'Emily Taylor', 'Carlos Hernandez', 'Nancy White'
     ],
     'bottling-1': [
+        // Water-only line
         'Kevin Moore', 'Patricia Jackson', 'Christopher Harris', 'Sandra Martin',
         'Daniel Thompson', 'Betty Garcia', 'Steven Robinson'
     ],
     'bottling-2': [
+        // Juice / tea / sports drinks line
         'Mark Clark', 'Dorothy Lewis', 'Paul Walker', 'Helen Hall',
         'George Young', 'Ruth Allen', 'Brian King'
     ]
 };
 
+// runWeight  — relative frequency: higher = runs more often and for longer stretches
+// unitsPerHour — production rate when running
+// rejectsPerHour — average reject events per hour of run time
 const PRODUCT_CATALOG = {
     'syrup-5': [
         {
             product: 'Coca-Cola Classic 20oz',
             upc: '049000042566',
             operatorSlots: [0, 1, 2],
-            baseUnitsPerDay: 3650,
+            runWeight: 10,         // flagship SKU — dominant run time
+            unitsPerHour: 450,
             kpi: { inspection: 25, weight: 50, md: 20 },
-            baseRejects: { inspection: 4.2, weight: 2.1, md: 1.5 }
+            rejectsPerHour: { inspection: 0.53, weight: 0.26, md: 0.19 }
         },
         {
             product: 'Sprite Zero 20oz',
             upc: '049000028894',
             operatorSlots: [3, 4],
-            baseUnitsPerDay: 3200,
+            runWeight: 6,
+            unitsPerHour: 400,
             kpi: { inspection: 15, weight: 50, md: 20 },
-            baseRejects: { inspection: 3.8, weight: 3.9, md: 1.7 }
+            rejectsPerHour: { inspection: 0.48, weight: 0.49, md: 0.21 }
         },
         {
             product: 'Dr Pepper 20oz',
             upc: '078000001831',
             operatorSlots: [5, 6, 0],
-            baseUnitsPerDay: 2800,
+            runWeight: 4,
+            unitsPerHour: 350,
             kpi: { inspection: 20, weight: 45, md: 15 },
-            baseRejects: { inspection: 2.5, weight: 4.2, md: 2.1 }
+            rejectsPerHour: { inspection: 0.31, weight: 0.53, md: 0.26 }
         },
         {
             product: 'Fanta Orange 20oz',
             upc: '049000006734',
             operatorSlots: [1, 4],
-            baseUnitsPerDay: 2400,
+            runWeight: 2,          // infrequent, short runs
+            unitsPerHour: 300,
             kpi: { inspection: 18, weight: 40, md: 15 },
-            baseRejects: { inspection: 1.9, weight: 3.2, md: 1.1 }
+            rejectsPerHour: { inspection: 0.24, weight: 0.40, md: 0.14 }
         }
     ],
     'syrup-3': [
@@ -64,109 +73,124 @@ const PRODUCT_CATALOG = {
             product: 'Pepsi Cola 20oz',
             upc: '012000001079',
             operatorSlots: [0, 1, 2],
-            baseUnitsPerDay: 3800,
+            runWeight: 10,
+            unitsPerHour: 475,
             kpi: { inspection: 20, weight: 45, md: 18 },
-            baseRejects: { inspection: 2.8, weight: 5.5, md: 2.8 }
+            rejectsPerHour: { inspection: 0.35, weight: 0.69, md: 0.35 }
         },
         {
             product: 'Mountain Dew 20oz',
             upc: '012000004506',
             operatorSlots: [2, 3, 4],
-            baseUnitsPerDay: 3100,
+            runWeight: 7,
+            unitsPerHour: 390,
             kpi: { inspection: 22, weight: 55, md: 20 },
-            baseRejects: { inspection: 3.1, weight: 4.9, md: 1.9 }
+            rejectsPerHour: { inspection: 0.39, weight: 0.61, md: 0.24 }
         },
         {
             product: 'Gatorade Glacier Blue 28oz',
             upc: '052000113548',
             operatorSlots: [5, 6],
-            baseUnitsPerDay: 2600,
+            runWeight: 4,
+            unitsPerHour: 325,
             kpi: { inspection: 15, weight: 35, md: 12 },
-            baseRejects: { inspection: 1.5, weight: 3.1, md: 1.2 }
+            rejectsPerHour: { inspection: 0.19, weight: 0.39, md: 0.15 }
         },
         {
             product: '7UP Zero Sugar 20oz',
             upc: '012200037915',
             operatorSlots: [0, 3, 6],
-            baseUnitsPerDay: 2100,
+            runWeight: 2,
+            unitsPerHour: 340,
             kpi: { inspection: 12, weight: 30, md: 10 },
-            baseRejects: { inspection: 1.8, weight: 2.5, md: 0.9 }
+            rejectsPerHour: { inspection: 0.23, weight: 0.31, md: 0.11 }
         }
     ],
     'bottling-1': [
+        // ── WATER-ONLY LINE ──────────────────────────────────────────────
         {
             product: 'Aquafina 16.9oz 24pk',
             upc: '012000000218',
             operatorSlots: [0, 1, 2, 3],
-            baseUnitsPerDay: 5200,
+            runWeight: 10,
+            unitsPerHour: 650,
             kpi: { inspection: 30, weight: 60, md: 25 },
-            baseRejects: { inspection: 3.5, weight: 2.5, md: 2.0 }
+            rejectsPerHour: { inspection: 0.44, weight: 0.31, md: 0.25 }
         },
         {
             product: 'Dasani Water 16.9oz 24pk',
             upc: '049000042864',
             operatorSlots: [4, 5, 6],
-            baseUnitsPerDay: 4800,
+            runWeight: 8,
+            unitsPerHour: 600,
             kpi: { inspection: 28, weight: 55, md: 22 },
-            baseRejects: { inspection: 2.9, weight: 3.3, md: 1.8 }
+            rejectsPerHour: { inspection: 0.36, weight: 0.41, md: 0.23 }
         },
         {
             product: 'Smartwater 33.8oz',
             upc: '786162000074',
             operatorSlots: [0, 2, 5],
-            baseUnitsPerDay: 3500,
+            runWeight: 5,
+            unitsPerHour: 440,
             kpi: { inspection: 20, weight: 40, md: 15 },
-            baseRejects: { inspection: 2.1, weight: 4.2, md: 1.3 }
-        },
-        {
-            product: 'Powerade Mountain Berry 32oz',
-            upc: '049000042887',
-            operatorSlots: [1, 3, 6],
-            baseUnitsPerDay: 2900,
-            kpi: { inspection: 18, weight: 35, md: 12 },
-            baseRejects: { inspection: 1.7, weight: 2.8, md: 1.4 }
-        },
-        {
-            product: 'vitaminwater restore 20oz',
-            upc: '786162004904',
-            operatorSlots: [2, 4],
-            baseUnitsPerDay: 2200,
-            kpi: { inspection: 15, weight: 30, md: 10 },
-            baseRejects: { inspection: 1.4, weight: 2.1, md: 0.8 }
+            rejectsPerHour: { inspection: 0.26, weight: 0.53, md: 0.16 }
         }
     ],
     'bottling-2': [
+        // ── JUICE · TEA · SPORTS DRINKS LINE ────────────────────────────
+        {
+            product: 'Powerade Mountain Berry 32oz',
+            upc: '049000042887',
+            operatorSlots: [0, 1, 2],
+            runWeight: 8,
+            unitsPerHour: 360,
+            kpi: { inspection: 18, weight: 35, md: 12 },
+            rejectsPerHour: { inspection: 0.21, weight: 0.35, md: 0.18 }
+        },
         {
             product: 'Simply Orange 52oz',
             upc: '025000052001',
-            operatorSlots: [0, 1, 2],
-            baseUnitsPerDay: 2200,
+            operatorSlots: [3, 4, 5],
+            runWeight: 7,
+            unitsPerHour: 280,
             kpi: { inspection: 15, weight: 30, md: 10 },
-            baseRejects: { inspection: 2.0, weight: 4.1, md: 1.6 }
+            rejectsPerHour: { inspection: 0.25, weight: 0.51, md: 0.20 }
         },
         {
             product: 'Minute Maid Lemonade 52oz',
             upc: '025000056009',
-            operatorSlots: [3, 4, 5],
-            baseUnitsPerDay: 2000,
+            operatorSlots: [6, 0, 3],
+            runWeight: 5,
+            unitsPerHour: 260,
             kpi: { inspection: 12, weight: 28, md: 10 },
-            baseRejects: { inspection: 1.8, weight: 3.5, md: 0.9 }
+            rejectsPerHour: { inspection: 0.23, weight: 0.44, md: 0.11 }
         },
         {
             product: 'Gold Peak Sweet Tea 59oz',
             upc: '049000006444',
-            operatorSlots: [6, 0, 4],
-            baseUnitsPerDay: 1800,
+            operatorSlots: [1, 4, 6],
+            runWeight: 4,
+            unitsPerHour: 240,
             kpi: { inspection: 10, weight: 25, md: 8 },
-            baseRejects: { inspection: 1.2, weight: 2.8, md: 0.8 }
+            rejectsPerHour: { inspection: 0.15, weight: 0.35, md: 0.10 }
         },
         {
             product: 'Peace Tea Georgia Peach 23oz',
             upc: '049000006550',
-            operatorSlots: [1, 3, 5],
-            baseUnitsPerDay: 3000,
+            operatorSlots: [2, 5],
+            runWeight: 3,
+            unitsPerHour: 340,
             kpi: { inspection: 20, weight: 40, md: 15 },
-            baseRejects: { inspection: 2.6, weight: 3.0, md: 1.5 }
+            rejectsPerHour: { inspection: 0.33, weight: 0.38, md: 0.19 }
+        },
+        {
+            product: 'vitaminwater restore 20oz',
+            upc: '786162004904',
+            operatorSlots: [0, 3],
+            runWeight: 2,
+            unitsPerHour: 380,
+            kpi: { inspection: 15, weight: 30, md: 10 },
+            rejectsPerHour: { inspection: 0.18, weight: 0.26, md: 0.10 }
         }
     ]
 };
@@ -180,7 +204,7 @@ function getDaysBetween(start, end) {
     return Math.max(1, Math.ceil(ms / (1000 * 60 * 60 * 24)));
 }
 
-// Deterministic pseudo-random: same seed → same value, across page loads
+// Deterministic pseudo-random: same seed → same value across page loads
 function seededRand(seed) {
     const x = Math.sin(seed * 9301 + 49297) * 233280;
     return x - Math.floor(x);
@@ -191,53 +215,73 @@ function generateLineData(lineKey, startDate, endDate) {
     const ops     = OPERATORS[lineKey];
     if (!catalog || !ops) return [];
 
-    const days     = getDaysBetween(startDate, endDate);
-    const dateSeed = Math.floor(startDate.getTime() / 86400000);
+    const days        = getDaysBetween(startDate, endDate);
+    const totalHours  = days * 14;   // ~14 productive line-hours per day (2 shifts)
+    const totalWeight = catalog.reduce((sum, item) => sum + item.runWeight, 0);
+    const dateSeed    = Math.floor(startDate.getTime() / 86400000);
 
     return catalog.map((item, idx) => {
         const s = dateSeed + idx * 37 + lineKey.charCodeAt(0);
 
-        const inspVal = Math.round(item.baseRejects.inspection * days * (0.75 + seededRand(s)      * 0.5));
-        const wgtVal  = Math.round(item.baseRejects.weight     * days * (0.75 + seededRand(s + 1)  * 0.5));
-        const mdVal   = Math.round(item.baseRejects.md         * days * (0.75 + seededRand(s + 2)  * 0.5));
-        const units   = Math.round(item.baseUnitsPerDay        * days * (0.92 + seededRand(s + 3)  * 0.16));
+        // Hours allocated proportional to runWeight, with seeded variance
+        const baseHours      = (item.runWeight / totalWeight) * totalHours;
+        const hourVariance   = 0.80 + seededRand(s + 50) * 0.40;   // ±20%
+        const allocatedHours = Math.max(0.5, Math.round(baseHours * hourVariance * 10) / 10);
 
-        const totalHours = days * 8;
-        const fracs      = [0.45, 0.35, 0.20];
-        const operatorData = item.operatorSlots.map((slot, i) => ({
+        // Units and rejects are a direct function of hours run
+        const units   = Math.round(allocatedHours * item.unitsPerHour    * (0.93 + seededRand(s + 3)  * 0.14));
+        const inspVal = Math.round(allocatedHours * item.rejectsPerHour.inspection * (0.75 + seededRand(s)      * 0.50));
+        const wgtVal  = Math.round(allocatedHours * item.rejectsPerHour.weight     * (0.75 + seededRand(s + 1)  * 0.50));
+        const mdVal   = Math.round(allocatedHours * item.rejectsPerHour.md         * (0.75 + seededRand(s + 2)  * 0.50));
+
+        // Operator hours are fractions of the product's allocated run time
+        const fracs  = [0.55, 0.30, 0.15, 0.10];
+        const opData = item.operatorSlots.map((slot, i) => ({
             name:  ops[slot % ops.length],
-            hours: Math.round(totalHours * (fracs[i] !== undefined ? fracs[i] : 0.15))
+            hours: Math.max(1, Math.round(allocatedHours * (fracs[i] !== undefined ? fracs[i] : 0.10)))
         }));
 
         return {
             product:  item.product,
             upc:      item.upc,
-            operators: operatorData,
+            operators: opData,
             inspectionRejects: { value: inspVal, kpi: item.kpi.inspection },
             weightRejects:     { value: wgtVal,  kpi: item.kpi.weight     },
             mdRejects:         { value: mdVal,   kpi: item.kpi.md         },
-            totalUnits: units,
+            totalUnits:   units,
             // stored for detail modal
-            _days: days,
-            _dateSeed: dateSeed,
-            _upcSeed: item.upc.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
+            _hours:         allocatedHours,
+            _days:          days,
+            _dateSeed:      dateSeed,
+            _upcSeed:       item.upc.split('').reduce((a, c) => a + c.charCodeAt(0), 0),
+            _unitsPerHour:  item.unitsPerHour,
+            _rejectsPerHour: item.rejectsPerHour,
+            _kpi:           item.kpi
         };
     });
 }
 
+// Generates per-day breakdown for the product detail modal
 function generateDailyDetail(product, startDate) {
-    const rows = [];
+    const rows         = [];
+    const hoursPerDay  = product._hours / product._days;
+
     for (let d = 0; d < product._days; d++) {
         const date = new Date(startDate);
         date.setDate(date.getDate() + d);
         const s = product._dateSeed + d + product._upcSeed;
 
+        // Daily hours vary — some days the product may not run at all for low-weight SKUs
+        const dayHrVariance  = 0.20 + seededRand(s + 20) * 1.60;   // 0.2x–1.8x the daily average
+        const dailyHours     = Math.max(0, Math.round(hoursPerDay * dayHrVariance * 10) / 10);
+
         rows.push({
             date:       date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }),
-            units:      Math.round((product.totalUnits              / product._days) * (0.88 + seededRand(s + 15) * 0.24)),
-            inspection: Math.round((product.inspectionRejects.value / product._days) * (0.40 + seededRand(s)      * 1.20)),
-            weight:     Math.round((product.weightRejects.value     / product._days) * (0.40 + seededRand(s + 5)  * 1.20)),
-            md:         Math.round((product.mdRejects.value         / product._days) * (0.40 + seededRand(s + 10) * 1.20))
+            hours:      dailyHours,
+            units:      Math.round(dailyHours * product._unitsPerHour * (0.92 + seededRand(s + 15) * 0.16)),
+            inspection: Math.round(dailyHours * product._rejectsPerHour.inspection * (0.60 + seededRand(s)      * 0.80)),
+            weight:     Math.round(dailyHours * product._rejectsPerHour.weight     * (0.60 + seededRand(s + 5)  * 0.80)),
+            md:         Math.round(dailyHours * product._rejectsPerHour.md         * (0.60 + seededRand(s + 10) * 0.80))
         });
     }
     return rows;
@@ -358,12 +402,10 @@ class VeriPakDashboard {
         document.getElementById('rejectRate').textContent    = `${rejectRate}%`;
         document.getElementById('topCategory').textContent   = topCat.name;
 
-        // Color the reject rate: red if > 0.5%, green otherwise
         const rateEl = document.getElementById('rejectRate');
         rateEl.classList.toggle('kpi-danger',  parseFloat(rejectRate) > 0.5);
         rateEl.classList.toggle('kpi-success', parseFloat(rejectRate) <= 0.5);
 
-        // Color top category label danger
         document.getElementById('topCategory').className = 'kpi-value kpi-danger';
     }
 
@@ -417,9 +459,9 @@ class VeriPakDashboard {
     }
 
     createRejectCell(rejectData) {
-        const td  = document.createElement('td');
+        const td   = document.createElement('td');
         td.className = 'reject-cell';
-        const pct = Math.min((rejectData.value / rejectData.kpi) * 100, 100);
+        const pct  = Math.min((rejectData.value / rejectData.kpi) * 100, 100);
         const over = rejectData.value > rejectData.kpi;
         const cls  = over ? 'danger' : 'success';
 
@@ -497,9 +539,10 @@ class VeriPakDashboard {
         const startStr = this._startDate.toLocaleDateString('en-US');
         const endStr   = this._endDate.toLocaleDateString('en-US');
 
-        const totalInsp = rows.reduce((a, r) => a + r.inspection, 0);
-        const totalWgt  = rows.reduce((a, r) => a + r.weight, 0);
-        const totalMd   = rows.reduce((a, r) => a + r.md, 0);
+        const totalInsp  = rows.reduce((a, r) => a + r.inspection, 0);
+        const totalWgt   = rows.reduce((a, r) => a + r.weight, 0);
+        const totalMd    = rows.reduce((a, r) => a + r.md, 0);
+        const totalHours = rows.reduce((a, r) => a + r.hours, 0);
 
         const inspKPI = product.inspectionRejects.kpi;
         const wgtKPI  = product.weightRejects.kpi;
@@ -508,10 +551,11 @@ class VeriPakDashboard {
         const tableRows = rows.map(r => `
             <tr>
                 <td>${r.date}</td>
-                <td>${this.fmt(r.units)}</td>
-                <td class="${r.inspection > inspKPI ? 'modal-danger' : ''}">${r.inspection}</td>
-                <td class="${r.weight     > wgtKPI  ? 'modal-danger' : ''}">${r.weight}</td>
-                <td class="${r.md         > mdKPI   ? 'modal-danger' : ''}">${r.md}</td>
+                <td>${r.hours > 0 ? r.hours + ' hrs' : '—'}</td>
+                <td>${r.hours > 0 ? this.fmt(r.units) : '—'}</td>
+                <td class="${r.inspection > inspKPI ? 'modal-danger' : ''}">${r.hours > 0 ? r.inspection : '—'}</td>
+                <td class="${r.weight     > wgtKPI  ? 'modal-danger' : ''}">${r.hours > 0 ? r.weight     : '—'}</td>
+                <td class="${r.md         > mdKPI   ? 'modal-danger' : ''}">${r.hours > 0 ? r.md         : '—'}</td>
             </tr>
         `).join('');
 
@@ -521,7 +565,8 @@ class VeriPakDashboard {
                 <span><strong>UPC:</strong> ${product.upc}</span>
                 <span><strong>Line:</strong> ${lineName}</span>
                 <span><strong>Date Range:</strong> ${startStr} – ${endStr}</span>
-                <span><strong>Total Units Ran:</strong> ${this.fmt(product.totalUnits)}</span>
+                <span><strong>Total Run Time:</strong> ${product._hours} hrs</span>
+                <span><strong>Total Units:</strong> ${this.fmt(product.totalUnits)}</span>
             </div>
             <div class="modal-kpi-row">
                 <div class="modal-kpi-item ${product.inspectionRejects.value > inspKPI ? 'modal-kpi-danger' : 'modal-kpi-success'}">
@@ -546,6 +591,7 @@ class VeriPakDashboard {
                     <thead>
                         <tr>
                             <th>Date</th>
+                            <th>Hours Ran</th>
                             <th>Units Ran</th>
                             <th>Inspection Rejects</th>
                             <th>Weight Rejects</th>
@@ -556,6 +602,7 @@ class VeriPakDashboard {
                     <tfoot>
                         <tr>
                             <td><strong>Total</strong></td>
+                            <td><strong>${totalHours} hrs</strong></td>
                             <td><strong>${this.fmt(product.totalUnits)}</strong></td>
                             <td><strong>${totalInsp}</strong></td>
                             <td><strong>${totalWgt}</strong></td>
@@ -584,6 +631,7 @@ class VeriPakDashboard {
                     <td>${i + 1}</td>
                     <td>${p.product}</td>
                     <td>${p.upc}</td>
+                    <td>${p._hours} hrs</td>
                     <td>${this.fmt(p.totalUnits)}</td>
                     <td>${total}</td>
                     <td>${rate}%</td>
@@ -606,6 +654,7 @@ class VeriPakDashboard {
                             <th>#</th>
                             <th>Product</th>
                             <th>UPC</th>
+                            <th>Run Time</th>
                             <th>Units Ran</th>
                             <th>Total Rejects</th>
                             <th>Reject Rate</th>
