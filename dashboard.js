@@ -493,11 +493,26 @@ class VeriPakDashboard {
             // Actions
             const actCell = document.createElement('td');
             actCell.className = 'actions-cell';
+
             const btn = document.createElement('button');
             btn.className   = 'btn-view-csv';
             btn.textContent = 'View CSV';
             btn.addEventListener('click', () => this.openProductModal(idx));
             actCell.appendChild(btn);
+
+            const dlBtn = document.createElement('button');
+            dlBtn.className = 'btn-download-csv';
+            dlBtn.title     = 'Download CSV';
+            dlBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="2" width="14" height="18" rx="2"/>
+                    <line x1="7" y1="8"  x2="13" y2="8"/>
+                    <line x1="7" y1="11" x2="13" y2="11"/>
+                    <line x1="7" y1="14" x2="10" y2="14"/>
+                    <polyline points="17 15 17 21 20 18 17 21 14 18"/>
+                </svg>`;
+            actCell.appendChild(dlBtn);
             tr.appendChild(actCell);
 
             tbody.appendChild(tr);

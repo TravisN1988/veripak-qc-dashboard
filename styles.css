@@ -563,6 +563,7 @@ input:checked + .toggle-slider:before {
 
 .actions-cell {
     text-align: center;
+    vertical-align: middle;
 }
 
 .btn-view-csv {
@@ -581,6 +582,47 @@ input:checked + .toggle-slider:before {
     background: var(--primary-blue-dark);
     transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
+}
+
+.btn-download-csv {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.4rem;
+    width: 32px;
+    height: 32px;
+    background: #e8f5ee;
+    color: #1d7a40;
+    border: 1.5px solid #a8d5b8;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-download-csv svg {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+}
+
+.btn-download-csv:hover {
+    background: #1d7a40;
+    color: white;
+    border-color: #1d7a40;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.dark-mode .btn-download-csv {
+    background: rgba(29, 122, 64, 0.2);
+    color: #5cba85;
+    border-color: rgba(29, 122, 64, 0.4);
+}
+
+.dark-mode .btn-download-csv:hover {
+    background: #1d7a40;
+    color: white;
+    border-color: #1d7a40;
 }
 
 /* SECTION 6: Combined Reject Charts */
