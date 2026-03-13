@@ -194,6 +194,12 @@ input:checked + .toggle-slider:before {
     flex-wrap: wrap;
 }
 
+.filter-container-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .filter-group {
     display: flex;
     flex-direction: column;
