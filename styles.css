@@ -778,3 +778,209 @@ input,
 select {
     transition: all 0.2s ease;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MODAL
+   ═══════════════════════════════════════════════════════════ */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-dialog {
+    background: var(--surface-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 860px;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    flex-shrink: 0;
+}
+
+.modal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.modal-close:hover {
+    background: var(--border-light);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem;
+    overflow-y: auto;
+}
+
+/* Meta row */
+.modal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* KPI summary row inside modal */
+.modal-kpi-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.modal-kpi-item {
+    flex: 1;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.modal-kpi-success {
+    background: var(--success-light);
+    border-color: var(--success-green);
+}
+
+.modal-kpi-danger {
+    background: var(--danger-light);
+    border-color: var(--danger-red);
+}
+
+.modal-kpi-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.modal-kpi-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.modal-kpi-success .modal-kpi-value { color: var(--success-green); }
+.modal-kpi-danger  .modal-kpi-value { color: var(--danger-red); }
+
+.modal-kpi-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Section title inside modal */
+.modal-table-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 0.6rem;
+}
+
+/* Table inside modal */
+.modal-table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.modal-table th {
+    background: var(--bg-gradient-start);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+    white-space: nowrap;
+}
+
+.modal-table td {
+    padding: 0.55rem 0.85rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.modal-table tbody tr:last-child td { border-bottom: none; }
+
+.modal-table tbody tr:hover td {
+    background: var(--bg-gradient-start);
+}
+
+.modal-table tfoot td {
+    background: var(--bg-gradient-start);
+    border-top: 2px solid var(--border-medium);
+    color: var(--text-primary);
+}
+
+.modal-danger {
+    color: var(--danger-red);
+    font-weight: 600;
+}
+
+/* Dark-mode tints for modal */
+.dark-mode .modal-kpi-success {
+    background: rgba(40, 167, 69, 0.15);
+    border-color: rgba(40, 167, 69, 0.4);
+}
+
+.dark-mode .modal-kpi-danger {
+    background: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.4);
+}
+
+@media (max-width: 600px) {
+    .modal-kpi-row   { flex-direction: column; }
+    .modal-meta      { flex-direction: column; gap: 0.3rem; }
+}

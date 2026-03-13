@@ -44,12 +44,12 @@
                 <label class="filter-label">Date Range</label>
                 <div class="date-range-inputs">
                     <div class="date-input-wrapper">
-                        <input type="datetime-local" class="filter-input date-input" id="dateStart" value="2024-04-01T00:00">
+                        <input type="datetime-local" class="filter-input date-input" id="dateStart">
                         <span class="date-label">Start</span>
                     </div>
                     <span class="date-separator">to</span>
                     <div class="date-input-wrapper">
-                        <input type="datetime-local" class="filter-input date-input" id="dateEnd" value="2024-04-07T23:59">
+                        <input type="datetime-local" class="filter-input date-input" id="dateEnd">
                         <span class="date-label">End</span>
                     </div>
                 </div>
@@ -65,22 +65,22 @@
         <div class="kpi-card">
             <div class="kpi-block">
                 <div class="kpi-label">Total Products Ran</div>
-                <div class="kpi-value" id="totalProducts">51,300</div>
+                <div class="kpi-value" id="totalProducts">—</div>
             </div>
             <div class="kpi-divider"></div>
             <div class="kpi-block">
                 <div class="kpi-label">Total Quality Rejects</div>
-                <div class="kpi-value kpi-success" id="totalRejects">128</div>
+                <div class="kpi-value" id="totalRejects">—</div>
             </div>
             <div class="kpi-divider"></div>
             <div class="kpi-block">
                 <div class="kpi-label">Overall Reject Rate</div>
-                <div class="kpi-value" id="rejectRate">0.25%</div>
+                <div class="kpi-value" id="rejectRate">—</div>
             </div>
             <div class="kpi-divider"></div>
             <div class="kpi-block">
                 <div class="kpi-label">Top Reject Category</div>
-                <div class="kpi-value kpi-danger" id="topCategory">Inspection Rejects</div>
+                <div class="kpi-value kpi-danger" id="topCategory">—</div>
             </div>
         </div>
     </section>
@@ -95,7 +95,7 @@
             <table class="summary-table">
                 <thead>
                     <tr>
-                        <th class="col-product">Product & UPC</th>
+                        <th class="col-product">Product &amp; UPC</th>
                         <th class="col-operators">Operators</th>
                         <th class="col-rejects">Inspection Rejects</th>
                         <th class="col-rejects">Weight Rejects</th>
@@ -104,102 +104,7 @@
                     </tr>
                 </thead>
                 <tbody id="summaryTableBody">
-                    <!-- Product Row 1 -->
-                    <tr class="product-row">
-                        <td class="product-cell">
-                            <div class="product-name">Coca-Cola Classic 20oz</div>
-                            <div class="product-upc">UPC: 049000042566</div>
-                        </td>
-                        <td class="operators-cell">
-                            <div class="operator-line">John Smith <span class="operator-hours">24 hrs</span></div>
-                            <div class="operator-line">Maria Garcia <span class="operator-hours">16 hrs</span></div>
-                            <div class="operator-line">David Chen <span class="operator-hours">8 hrs</span></div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">32</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-danger" style="width: 80%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-danger">KPI = 25</div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">18</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-success" style="width: 36%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-success">KPI = 50</div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">12</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-success" style="width: 60%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-success">KPI = 20</div>
-                        </td>
-                        <td class="actions-cell">
-                            <button class="btn-view-csv">View CSV</button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 2 -->
-                    <tr class="product-row">
-                        <td class="product-cell">
-                            <div class="product-name">Sprite Zero 20oz</div>
-                            <div class="product-upc">UPC: 049000028894</div>
-                        </td>
-                        <td class="operators-cell">
-                            <div class="operator-line">Sarah Johnson <span class="operator-hours">24 hrs</span></div>
-                            <div class="operator-line">Michael Brown <span class="operator-hours">12 hrs</span></div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">26</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-danger" style="width: 65%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-danger">KPI = 15</div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">28</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-success" style="width: 56%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-success">KPI = 50</div>
-                        </td>
-                        <td class="reject-cell">
-                            <div class="reject-value">12</div>
-                            <div class="reject-gauge">
-                                <div class="gauge-bar">
-                                    <div class="gauge-fill gauge-success" style="width: 60%;">
-                                        <div class="gauge-dot"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="kpi-badge kpi-badge-success">KPI = 20</div>
-                        </td>
-                        <td class="actions-cell">
-                            <button class="btn-view-csv">View CSV</button>
-                        </td>
-                    </tr>
+                    <!-- Dynamically populated by dashboard.js -->
                 </tbody>
             </table>
         </div>
@@ -210,54 +115,41 @@
         <div class="chart-card">
             <div class="chart-header">
                 <div class="chart-title">Inspection Rejects</div>
-                <div class="kpi-badge kpi-badge-danger">KPI = 40</div>
+                <div id="chart-inspection-badge" class="kpi-badge kpi-badge-danger">KPI = —</div>
             </div>
-            <div class="chart-value chart-value-danger">58</div>
-            <div class="chart-bars">
-                <div class="bar-chart bar-danger">
-                    <div class="bar" style="height: 40%"></div>
-                    <div class="bar" style="height: 60%"></div>
-                    <div class="bar" style="height: 80%"></div>
-                    <div class="bar" style="height: 100%"></div>
-                    <div class="bar" style="height: 70%"></div>
-                </div>
-            </div>
+            <div id="chart-inspection-value" class="chart-value chart-value-danger">—</div>
+            <div id="chart-inspection-bars" class="chart-bars"></div>
         </div>
 
         <div class="chart-card">
             <div class="chart-header">
                 <div class="chart-title">Weight Rejects</div>
-                <div class="kpi-badge kpi-badge-success">KPI = 100</div>
+                <div id="chart-weight-badge" class="kpi-badge kpi-badge-success">KPI = —</div>
             </div>
-            <div class="chart-value chart-value-success">46</div>
-            <div class="chart-bars">
-                <div class="bar-chart bar-success">
-                    <div class="bar" style="height: 30%"></div>
-                    <div class="bar" style="height: 50%"></div>
-                    <div class="bar" style="height: 70%"></div>
-                    <div class="bar" style="height: 90%"></div>
-                    <div class="bar" style="height: 60%"></div>
-                </div>
-            </div>
+            <div id="chart-weight-value" class="chart-value chart-value-success">—</div>
+            <div id="chart-weight-bars" class="chart-bars"></div>
         </div>
 
         <div class="chart-card">
             <div class="chart-header">
                 <div class="chart-title">MD Rejects</div>
-                <div class="kpi-badge kpi-badge-danger">KPI = 20</div>
+                <div id="chart-md-badge" class="kpi-badge kpi-badge-danger">KPI = —</div>
             </div>
-            <div class="chart-value chart-value-danger">24</div>
-            <div class="chart-bars">
-                <div class="bar-chart bar-danger">
-                    <div class="bar" style="height: 35%"></div>
-                    <div class="bar" style="height: 55%"></div>
-                    <div class="bar" style="height: 75%"></div>
-                    <div class="bar" style="height: 85%"></div>
-                    <div class="bar" style="height: 65%"></div>
-                </div>
-            </div>
+            <div id="chart-md-value" class="chart-value chart-value-danger">—</div>
+            <div id="chart-md-bars" class="chart-bars"></div>
         </div>
     </section>
+
+    <!-- MODAL: Product Detail / UPC File viewer -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title"></h3>
+                <button id="modalClose" class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
 
     <script src="dashboard.js"></script>
 </body>
