@@ -32,8 +32,8 @@ const OPERATORS = {
 const PRODUCT_CATALOG = {
     'syrup-5': [
         {
-            product: 'Coca-Cola Classic 20oz',
-            upc: '049000042566',
+            product: 'Classic Cola 20oz',
+            upc: '100000042566',
             operatorSlots: [0, 1, 2],
             runWeight: 10,         // flagship SKU — dominant run time
             unitsPerHour: 450,
@@ -41,8 +41,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.53, weight: 0.26, md: 0.19 }
         },
         {
-            product: 'Sprite Zero 20oz',
-            upc: '049000028894',
+            product: 'Lemon-Lime Zero 20oz',
+            upc: '100000028894',
             operatorSlots: [3, 4],
             runWeight: 6,
             unitsPerHour: 400,
@@ -50,8 +50,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.48, weight: 0.49, md: 0.21 }
         },
         {
-            product: 'Dr Pepper 20oz',
-            upc: '078000001831',
+            product: 'Spiced Cherry Cola 20oz',
+            upc: '100000001831',
             operatorSlots: [5, 6, 0],
             runWeight: 4,
             unitsPerHour: 350,
@@ -59,8 +59,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.31, weight: 0.53, md: 0.26 }
         },
         {
-            product: 'Fanta Orange 20oz',
-            upc: '049000006734',
+            product: 'Orange Citrus Soda 20oz',
+            upc: '100000006734',
             operatorSlots: [1, 4],
             runWeight: 2,          // infrequent, short runs
             unitsPerHour: 300,
@@ -70,8 +70,8 @@ const PRODUCT_CATALOG = {
     ],
     'syrup-3': [
         {
-            product: 'Pepsi Cola 20oz',
-            upc: '012000001079',
+            product: 'Premium Cola 20oz',
+            upc: '200000001079',
             operatorSlots: [0, 1, 2],
             runWeight: 10,
             unitsPerHour: 475,
@@ -79,8 +79,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.35, weight: 0.69, md: 0.35 }
         },
         {
-            product: 'Mountain Dew 20oz',
-            upc: '012000004506',
+            product: 'Citrus Rush 20oz',
+            upc: '200000004506',
             operatorSlots: [2, 3, 4],
             runWeight: 7,
             unitsPerHour: 390,
@@ -88,8 +88,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.39, weight: 0.61, md: 0.24 }
         },
         {
-            product: 'Gatorade Glacier Blue 28oz',
-            upc: '052000113548',
+            product: 'Glacier Blue Sports Drink 28oz',
+            upc: '200000113548',
             operatorSlots: [5, 6],
             runWeight: 4,
             unitsPerHour: 325,
@@ -97,8 +97,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.19, weight: 0.39, md: 0.15 }
         },
         {
-            product: '7UP Zero Sugar 20oz',
-            upc: '012200037915',
+            product: 'Crisp Lemon-Lime Zero 20oz',
+            upc: '200000037915',
             operatorSlots: [0, 3, 6],
             runWeight: 2,
             unitsPerHour: 340,
@@ -109,8 +109,8 @@ const PRODUCT_CATALOG = {
     'bottling-1': [
         // ── WATER-ONLY LINE ──────────────────────────────────────────────
         {
-            product: 'Aquafina 16.9oz 24pk',
-            upc: '012000000218',
+            product: 'Purified Water 16.9oz 24pk',
+            upc: '300000000218',
             operatorSlots: [0, 1, 2, 3],
             runWeight: 10,
             unitsPerHour: 650,
@@ -118,8 +118,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.44, weight: 0.31, md: 0.25 }
         },
         {
-            product: 'Dasani Water 16.9oz 24pk',
-            upc: '049000042864',
+            product: 'Mineral Water 16.9oz 24pk',
+            upc: '300000042864',
             operatorSlots: [4, 5, 6],
             runWeight: 8,
             unitsPerHour: 600,
@@ -127,8 +127,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.36, weight: 0.41, md: 0.23 }
         },
         {
-            product: 'Smartwater 33.8oz',
-            upc: '786162000074',
+            product: 'Vapor Distilled Water 33.8oz',
+            upc: '300000000074',
             operatorSlots: [0, 2, 5],
             runWeight: 5,
             unitsPerHour: 440,
@@ -139,8 +139,8 @@ const PRODUCT_CATALOG = {
     'bottling-2': [
         // ── JUICE · TEA · SPORTS DRINKS LINE ────────────────────────────
         {
-            product: 'Powerade Mountain Berry 32oz',
-            upc: '049000042887',
+            product: 'Mountain Berry Sports Drink 32oz',
+            upc: '400000042887',
             operatorSlots: [0, 1, 2],
             runWeight: 8,
             unitsPerHour: 360,
@@ -148,8 +148,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.21, weight: 0.35, md: 0.18 }
         },
         {
-            product: 'Simply Orange 52oz',
-            upc: '025000052001',
+            product: 'Fresh Squeezed Orange Juice 52oz',
+            upc: '400000052001',
             operatorSlots: [3, 4, 5],
             runWeight: 7,
             unitsPerHour: 280,
@@ -157,8 +157,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.25, weight: 0.51, md: 0.20 }
         },
         {
-            product: 'Minute Maid Lemonade 52oz',
-            upc: '025000056009',
+            product: 'Classic Lemonade 52oz',
+            upc: '400000056009',
             operatorSlots: [6, 0, 3],
             runWeight: 5,
             unitsPerHour: 260,
@@ -166,8 +166,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.23, weight: 0.44, md: 0.11 }
         },
         {
-            product: 'Gold Peak Sweet Tea 59oz',
-            upc: '049000006444',
+            product: 'Southern Sweet Tea 59oz',
+            upc: '400000006444',
             operatorSlots: [1, 4, 6],
             runWeight: 4,
             unitsPerHour: 240,
@@ -175,8 +175,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.15, weight: 0.35, md: 0.10 }
         },
         {
-            product: 'Peace Tea Georgia Peach 23oz',
-            upc: '049000006550',
+            product: 'Georgia Peach Tea 23oz',
+            upc: '400000006550',
             operatorSlots: [2, 5],
             runWeight: 3,
             unitsPerHour: 340,
@@ -184,8 +184,8 @@ const PRODUCT_CATALOG = {
             rejectsPerHour: { inspection: 0.33, weight: 0.38, md: 0.19 }
         },
         {
-            product: 'vitaminwater restore 20oz',
-            upc: '786162004904',
+            product: 'Vitamin Enhanced Water 20oz',
+            upc: '400000004904',
             operatorSlots: [0, 3],
             runWeight: 2,
             unitsPerHour: 380,
